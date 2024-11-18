@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Gestión de Películas</h2>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </tr>
+    {% for movie in movies %}
+    <tr>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.description }}</td>
+        <td>
+            <a href="{{ url_for('routes.edit_movie', movie_id=movie.id) }}">Editar</a>
+            <form method="POST" action="{{ url_for('routes.delete_movie', movie_id=movie.id) }}" style="display:inline;">
+                <button type="submit">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('routes.add_movie') }}">Agregar Nueva Película</a>
+{% endblock %}

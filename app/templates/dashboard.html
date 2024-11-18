@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Bienvenido, {{ user.username }}</h2>
+
+<h3>Películas Disponibles:</h3>
+<ul>
+    {% for movie in movies %}
+    <li>
+        <strong>{{ movie.title }}</strong> - {{ movie.description }}
+        {% if user.role == 'standard' %}
+        <a href="{{ url_for('rate_movie', movie_id=movie.id) }}">Calificar/Comentar</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% if user.role == 'moderator' %}
+<a href="{{ url_for('add_movie') }}">Agregar Nueva Película</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Iniciar Sesión</h2>
+<form method="POST" action="{{ url_for('routes.login') }}">
+    {{ form.hidden_tag() }}
+    <label for="email">Correo Electrónico:</label>
+    {{ form.email(size=20) }}<br><br>
+    <label for="password">Contraseña:</label>
+    {{ form.password(size=20) }}<br><br>
+    <button type="submit">Iniciar Sesión</button>
+</form>
+{% endblock %}

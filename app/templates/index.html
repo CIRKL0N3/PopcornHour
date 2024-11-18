@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido a PopcornHour</h1>
+    <p>Recomienda, califica y discute sobre tus películas y series favoritas.</p>
+    <a href="{{ url_for('routes.signup') }}" class="btn btn-primary">Registrarse</a>
+    <a href="{{ url_for('routes.list_movies') }}" class="btn btn-secondary">Explorar Películas</a>
+</div>
+{% endblock %}

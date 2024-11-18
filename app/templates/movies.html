@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Películas Disponibles</h2>
+<ul>
+    {% for movie in movies %}
+    <li>
+        <strong>{{ movie.title }}</strong>: {{ movie.description }}
+        <a href="{{ url_for('routes.movie_details', movie_id=movie.id) }}">Ver Detalles</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ movie.title }}</h2>
+<p>{{ movie.description }}</p>
+
+<h3>Calificaciones y Comentarios:</h3>
+<ul>
+    {% for rating in ratings %}
+    <li><strong>{{ rating.rating }}/5:</strong> {{ rating.comment }}</li>
+    {% endfor %}
+</ul>
+
+{% if current_user.is_authenticated and current_user.role == 'standard' %}
+<h3>Califica esta Película:</h3>
+<form method="POST" action="{{ url_for('routes.rate_movie', movie_id=movie.id) }}">
+    <label for="rating">Calificación (1-5):</label><br>
+    <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+
+    <label for="comment">Comentario:</label><br>
+    <textarea id="comment" name="comment"></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+</form>
+
+{% if movie.image %}
+<img src="{{ url_for('static', filename='uploads/' ~ movie.image) }}" alt="{{ movie.title }}" width="300">
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Película</h2>
+<form method="POST" action="{{ url_for('routes.edit_movie', movie_id=movie.id) }}">
+    <label for="title">Título:</label><br>
+    <input type="text" id="title" name="title" value="{{ movie.title }}" required><br><br>
+
+    <label for="description">Descripción:</label><br>
+    <textarea id="description" name="description" required>{{ movie.description }}</textarea><br><br>
+
+    <button type="submit">Guardar Cambios</button>
+</form>
+{% endblock %}
